@@ -2,16 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Login Tests">
-	<test name="P1 Test">
+	<!--<test name="P1 Test">
 		<groups>
 			<run>
 				<include name="p1"></include>
 			</run>
 		</groups>
 		<classes>
-			<class name="com.facebook.test.LoginTest"/>
+			<class name="com.facebook.qa.test.LoginTest"/>
 		</classes>
-	</test>
+	</test>-->
 	<test name="P2 Test">
 		<groups>
 			<run>
@@ -19,9 +19,8 @@
 			</run>
 		</groups>
 		<classes>
-			<class name="com.facebook.test.LoginTest">
+			<class name="com.facebook.qa.test.LoginTest">
 				<methods>
-					<exclude name="fillOutPasswordField"/>
 				</methods>
 			</class>
 		</classes>
