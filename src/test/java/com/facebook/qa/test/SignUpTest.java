@@ -16,7 +16,6 @@ public class SignUpTest {
 	
 	@BeforeClass(alwaysRun=true)
 	public void setup(){
-		System.out.print("hi");
 		driver = new FirefoxDriver();
 		fbMainPage = PageFactory.initElements(driver, 
 				FacebookMainPage.class);
@@ -24,13 +23,12 @@ public class SignUpTest {
 	
 	@AfterClass(alwaysRun=true)
 	public void teardown(){
-		driver.quit();
+	//	driver.quit();
 	}
 	
 	@Test(groups={"p1"})
 	public void mainPageSignUp(){
-		System.out.print("hi");
-		driver.get(FacebookMainPage.URL);
+		fbMainPage.loadPage();
 		fbMainPage.setText_EmailSignUp("qa");
 		fbMainPage.setText_FirstName("John");
 		fbMainPage.setText_LastName("auto");

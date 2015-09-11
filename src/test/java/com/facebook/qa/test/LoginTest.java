@@ -37,10 +37,8 @@ public class LoginTest {
 	}
 	
 	@Test(groups = {"p1", "pageLoads"})
-	// dataProvider="pages", dataProviderClass=HomePage.class)
 	public void loadPage(){
-		driver.get(FacebookMainPage.URL);
-		Assert.assertEquals(driver.getTitle(), FacebookMainPage.TITLE);
+		fbMainPage.loadPage();
 	}
 
 	@Test(groups={"p1", "field"}, dependsOnMethods = "loadPage")
@@ -58,8 +56,7 @@ public class LoginTest {
 	@Test(groups={"p2"}, dataProviderClass=HomePage.class, dataProvider="login") 
 	public void testLoginMainPage(String user, String pass, String errorType) {
 		driver.manage().deleteAllCookies();
-		driver.get(FacebookMainPage.URL);
-		Assert.assertEquals(driver.getTitle(), FacebookMainPage.TITLE);
+		fbMainPage.loadPage();
 		fbMainPage.setText_EmailField(user);
 		fbMainPage.setText_PasswordField(pass);
 		fbMainPage.clickLoginMain();

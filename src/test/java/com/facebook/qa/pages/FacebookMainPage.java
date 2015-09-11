@@ -5,14 +5,9 @@ import java.util.HashMap;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 //tutorial 6
 public class FacebookMainPage extends BasePage{
-	
-	public static final String URL = "https://www.facebook.com/";
-	public static final String TITLE = "Facebook - Log In or Sign Up";
 	
 	HashMap<String, Integer> date;
 	
@@ -44,57 +39,46 @@ public class FacebookMainPage extends BasePage{
 	}
 	
 	public void setText_EmailField(String username){
-		field_EmailLogin.sendKeys(username);
-		Assert.assertEquals(field_EmailLogin.getAttribute("value"), username);
+		setText(field_EmailLogin, username);
 	}
 	
 	public void setText_PasswordField(String password){
-		field_PasswordLogin.sendKeys(password);
-		Assert.assertEquals(field_PasswordLogin.getAttribute("value"), password);
+		setText(field_PasswordLogin, password);
 	}
 	
 	public void clickLoginMain(){
-		button_LogIn.click();
+		click(button_LogIn);
 	}
 	
 	public void setText_FirstName(String fName){
-		field_FirstName.click();
-		field_FirstName.sendKeys(fName);
-		Assert.assertEquals(field_FirstName.getAttribute("value"), fName);
+		setText(field_FirstName, fName);
 	}
 	
 	public void setText_LastName(String lName){
-		field_LastName.click();
-		field_LastName.sendKeys(lName);
-		Assert.assertEquals(field_LastName.getAttribute("value"), lName);
+		setText(field_LastName, lName);
 	}
 	
 	public void setText_EmailSignUp(String email){
-		field_EmailSignUp.click();
-		field_EmailSignUp.sendKeys("hi");
-		//field_ReenterEmail.click();
-		field_ReenterEmail.sendKeys("hey");
-		//Assert.assertEquals(field_EmailSignUp.getAttribute("value"), email);
+		setText(field_EmailSignUp, email);
+		setText(field_ReenterEmail, email);
 	}
 	
 	public void setText_PasswordSignUp(String password){
-		field_PasswordSignUp.click();
-		field_PasswordSignUp.sendKeys(password);
-		Assert.assertEquals(field_PasswordSignUp.getAttribute("value"), password);
+		setText(field_PasswordSignUp, password);
 	}
 	
 	public void dropdown_Bday(String month, String day, String year){
-		HashMap<String, WebElement> dateDropDowns = new HashMap<String, WebElement>();
+		selectInDropdown(dropdown_Month, month);
+		selectInDropdown(dropdown_Day, day);
+		selectInDropdown(dropdown_Year, year);
+		/*HashMap<String, WebElement> dateDropDowns = new HashMap<String, WebElement>();
 		dateDropDowns.put(month, dropdown_Month);
 		dateDropDowns.put(day, dropdown_Day);
 		dateDropDowns.put(year, dropdown_Year);
 
 		for(HashMap.Entry<String, WebElement> e : dateDropDowns.entrySet()){
-			//e.getValue().click();
-			System.out.println("Key: " + e.getKey());
-			System.out.println("Value: " + e.getValue());
 			Select select = new Select(e.getValue());
 			select.selectByValue(e.getKey());
-		}
+		}*/
 	}
 }
