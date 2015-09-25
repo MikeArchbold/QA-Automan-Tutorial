@@ -1,5 +1,7 @@
 package com.facebook.qa.test;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -25,6 +27,7 @@ public class LoginTest {
 	@BeforeClass(alwaysRun = true)
 	public void setup(){
 		driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
 		fbLoginPage = PageFactory.initElements(driver, LoginPage.class);
 		fbWelcomePage = PageFactory.initElements(driver, WelcomePage.class);
