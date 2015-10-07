@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class WelcomePage extends BasePage{
 	
-	@FindBy(xpath=".//*[@class='rfloat _ohf']/h2") WebElement headerTitle;
+	@FindBy(css=".fbxWelcomeBoxName") WebElement link_profilePage;
 	
 	public WelcomePage(WebDriver driver) {
 		super(driver);
 	}
 	
 	public String getUsernameText(){
-		return headerTitle.getText();
+		return link_profilePage.getText();
 	}
 }

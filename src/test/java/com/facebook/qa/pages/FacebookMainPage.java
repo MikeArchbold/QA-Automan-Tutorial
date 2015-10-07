@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 //tutorial 6
 public class FacebookMainPage extends BasePage{
@@ -23,7 +24,7 @@ public class FacebookMainPage extends BasePage{
 	@FindBy(id="day") WebElement dropdown_Day;
 	@FindBy(id="year") WebElement dropdown_Year;
 	
-	@FindBy(id="u_0_x") WebElement button_LogIn;
+	@FindBy(css="#loginbutton") WebElement button_LogIn;
 	
 	public FacebookMainPage(WebDriver driver){
 		super(driver);
@@ -31,18 +32,20 @@ public class FacebookMainPage extends BasePage{
 		this.title = "Facebook - Log In or Sign Up";
 		
 		date = new HashMap<String, Integer>();
-		
-		//may want to put these in xml
-		date.put("9", 9);
-		date.put("10", 9);
-		date.put("1999", 1999);
 	}
 	
-	public void setText_EmailField(String username){
+	public void login(String email, String password){
+		wait.until(ExpectedConditions.elementToBeClickable(field_EmailLogin));
+		setText_EmailLogin(email);
+		setText_PasswordLogin(password);
+		clickLoginMain();	
+	}
+	
+	public void setText_EmailLogin(String username){
 		setText(field_EmailLogin, username);
 	}
 	
-	public void setText_PasswordField(String password){
+	public void setText_PasswordLogin(String password){
 		setText(field_PasswordLogin, password);
 	}
 	
@@ -71,14 +74,5 @@ public class FacebookMainPage extends BasePage{
 		selectInDropdown(dropdown_Month, month);
 		selectInDropdown(dropdown_Day, day);
 		selectInDropdown(dropdown_Year, year);
-		/*HashMap<String, WebElement> dateDropDowns = new HashMap<String, WebElement>();
-		dateDropDowns.put(month, dropdown_Month);
-		dateDropDowns.put(day, dropdown_Day);
-		dateDropDowns.put(year, dropdown_Year);
-
-		for(HashMap.Entry<String, WebElement> e : dateDropDowns.entrySet()){
-			Select select = new Select(e.getValue());
-			select.selectByValue(e.getKey());
-		}*/
 	}
 }

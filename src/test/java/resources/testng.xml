@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Login Tests">
-	<!--<test name="P1 Test">
-		<groups>
-			<run>
-				<include name="p1"></include>
-			</run>
-		</groups>
+<suite name="Login Tests" parallel="tests" thread-count="2">
+	<test name="P1 Test">
 		<classes>
 			<class name="com.facebook.qa.test.LoginTest"/>
+			<class name="com.facebook.qa.test.SignUpTest"/>
 		</classes>
-	</test>-->
+	</test>
 	<test name="P2 Test">
-		<groups>
-			<run>
-				<include name="p2"></include>
-			</run>
-		</groups>
 		<classes>
-			<class name="com.facebook.qa.test.LoginTest">
-				<methods>
-				</methods>
-			</class>
+			<class name="com.facebook.qa.test.SignUpTest"/>
+			<class name="com.facebook.qa.test.LoginTest"/>
 		</classes>
 	</test>
 </suite>

@@ -23,7 +23,7 @@ public class SignUpTest {
 	
 	@AfterClass(alwaysRun=true)
 	public void teardown(){
-	//	driver.quit();
+		driver.quit();
 	}
 	
 	@Test(groups={"p1"})

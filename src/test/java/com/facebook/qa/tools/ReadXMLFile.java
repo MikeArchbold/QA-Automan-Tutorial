@@ -25,7 +25,16 @@ public class ReadXMLFile {
 	  String[][] users = null;
 	  
 	  try {
-    	File fXmlFile = new File("C:\\users.xml");
+		File fXmlFile = null;
+		if (System.getProperty("os.name").equals("Linux")){
+			String user = System.getProperty("user.name");
+			System.out.println(user);
+			fXmlFile = new File("/home/mike/users.xml");
+		}
+		else{
+			fXmlFile = new File("C:\\users.xml");
+		}
+		
     	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
     	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
     	Document doc = dBuilder.parse(fXmlFile);

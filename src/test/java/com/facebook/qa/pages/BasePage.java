@@ -5,18 +5,22 @@ import java.util.HashMap;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class BasePage {
-	
-	WebDriver driver;
+
 	String url;
 	String title;
+
+	WebDriver driver;
+	WebDriverWait wait;
 	
 	HashMap<String, WebElement> map;
 	
 	public BasePage(WebDriver driver){
 		this.driver = driver;
+		wait = new WebDriverWait(driver, 5);
 	}
 	
 	public void loadPage(){

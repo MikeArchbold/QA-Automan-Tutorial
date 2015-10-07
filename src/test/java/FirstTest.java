@@ -27,6 +27,7 @@ public class FirstTest {
 		for(WebElement element : headers){
 			System.out.println(element.getText());
 		}
+		
 		WebElement account00 = driver.findElement(By.cssSelector("#nav-link-yourAccount>.nav-line-2"));
 		account00.click();
 		
