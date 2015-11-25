@@ -39,6 +39,15 @@ public class BasePage {
 		Assert.assertEquals(element.getAttribute("value"), text);
 	}
 	
+	public void clearText(WebElement element){
+		element.clear();
+		System.out.print("clearText\n");
+		System.out.println("this is stupid" + element.getAttribute("value"));
+		if (!(element.getAttribute("value") == null) && 
+				!element.getAttribute("value").equals(""))
+			Assert.fail(element.getTagName() + " text field not cleared!");
+	}
+	
 	public void selectInDropdown(WebElement element, String value){
 		Select select = new Select(element);
 		select.selectByValue(value);

@@ -29,7 +29,7 @@ public class ReadXMLFile {
 		if (System.getProperty("os.name").equals("Linux")){
 			String user = System.getProperty("user.name");
 			System.out.println(user);
-			fXmlFile = new File("/home/mike/users.xml");
+			fXmlFile = new File("/home/" + System.getProperty("user.name") + "/users.xml");
 		}
 		else{
 			fXmlFile = new File("C:\\users.xml");

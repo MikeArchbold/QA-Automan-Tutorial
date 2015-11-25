@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.facebook.qa.data.HomePage;
@@ -43,8 +45,10 @@ public class LoginTest {
 		driver.quit();
 	}
 	
+	@Parameters({"browserType"})
 	@Test(groups = {"p1", "pageLoads"})
-	public void loadPage(){
+	public void loadPage(@Optional("Firefox") String browserType){
+		System.out.println(browserType);
 		fbMainPage.loadPage();
 	}
 

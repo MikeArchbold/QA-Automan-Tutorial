@@ -23,4 +23,12 @@ public class HomePage {
 			{users[1][0], users[1][1], users[1][2]}
 		};
 	}
+	
+	@DataProvider(name="correctLogin")
+	public static Object[][] correctLogin(){
+		String [][] users = ReadXMLFile.getUsersXML();
+		return new Object[][]{
+			{users[0][0], users[0][1]},
+		};
+	}
 }
