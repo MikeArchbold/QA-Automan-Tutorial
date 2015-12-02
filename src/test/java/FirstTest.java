@@ -1,3 +1,5 @@
+import static java.lang.Math.abs;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,7 +10,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class FirstTest {
 
 	public static void main(String[] args) throws InterruptedException{
-		WebDriver driver = new FirefoxDriver();
+		double money = 33.33;
+		System.out.println(String.format("$%,.2f", abs(money)));
+		System.out.println(3 + "hi");
+		int number = 1;
+		System.out.println(number + " " + (number == 1 ? "this" : "taht"));
+		/*WebDriver driver = new FirefoxDriver();
 		driver.get("http://facebook.com");
 		
 		WebElement textbox = driver.findElement(By.cssSelector("#email"));
@@ -31,7 +38,7 @@ public class FirstTest {
 		WebElement account00 = driver.findElement(By.cssSelector("#nav-link-yourAccount>.nav-line-2"));
 		account00.click();
 		
-		driver.close();
+		driver.close();*/
 	}
 
 }

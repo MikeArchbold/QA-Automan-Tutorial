@@ -23,6 +23,10 @@ public class BasePage {
 		wait = new WebDriverWait(driver, 5);
 	}
 	
+	protected void assertText(WebElement element, String text){
+		Assert.assertEquals(element.getText(), text);
+	}
+	
 	public void loadPage(){
 		driver.get(url);
 		Assert.assertEquals(driver.getTitle(), title);

@@ -18,9 +18,19 @@ public class NewsFeedPage extends BasePage{
 	WebElement listItem_Excited;
 	@FindBy(css="._2yg._4zz-  > div:nth-of-type(9) > div > div:nth-of-type(2) > div > button")
 	WebElement button_RemoveEmote;
+	@FindBy(xpath=".//*[@action='/search/web/direct_search.php']/div/div/div/div/div[3]")
+	WebElement textbox_searchBox;
+	@FindBy(xpath=".//*[@id='js_a']/ul/li[1]")
+	WebElement listItem_firstSearch;
 	
 	public void editNewsFeedText(String text){
 		setText(textbox_NewsFeed, text);
+	}
+	
+	public void search(String text) throws InterruptedException{
+		textbox_searchBox.sendKeys(text);
+		Thread.sleep(4000);
+		listItem_firstSearch.click();
 	}
 	
 	public void clearNewsFeedText(){
