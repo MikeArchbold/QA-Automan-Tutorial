@@ -3,6 +3,8 @@ package com.facebook.qa.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class NewsFeedPage extends BasePage{
 	
@@ -27,9 +29,9 @@ public class NewsFeedPage extends BasePage{
 		setText(textbox_NewsFeed, text);
 	}
 	
-	public void search(String text) throws InterruptedException{
+	public void search(String text, WebDriverWait wait){
 		textbox_searchBox.sendKeys(text);
-		Thread.sleep(4000);
+		waitUntilVisible(listItem_firstSearch);
 		listItem_firstSearch.click();
 	}
 	

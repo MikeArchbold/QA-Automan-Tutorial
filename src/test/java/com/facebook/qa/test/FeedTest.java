@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,6 +19,7 @@ import com.facebook.qa.pages.PublicProfilePage;
 public class FeedTest {
 	
 	WebDriver driver;
+	WebDriverWait wait;
 	FacebookMainPage fbMainPage;
 	NewsFeedPage fbNewsFeed;
 	PublicProfilePage fbPublicProfile;
@@ -26,6 +28,7 @@ public class FeedTest {
 	public void setup(){
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 5);
 		fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
 		fbNewsFeed = PageFactory.initElements(driver, NewsFeedPage.class);
 		fbPublicProfile = PageFactory.initElements(driver, PublicProfilePage.class);
@@ -37,9 +40,14 @@ public class FeedTest {
 	}
 	
 	@Test(dataProviderClass=HomePage.class, dataProvider="correctLogin")
-	public void cancelPost(String user, String password) throws InterruptedException{
+	public void correctLogin(String user, String password){
 		fbMainPage.loadPage();
 		fbMainPage.login(user, password);
+	}
+	
+	//write a post w/ an emote
+	@Test(dependsOnMethods="correctLogin")
+	public void cancelPost(){
 		fbNewsFeed.editNewsFeedText("Hello");
 		fbNewsFeed.openEmotesWindow();
 		fbNewsFeed.selectExcitedEmote();
@@ -48,9 +56,9 @@ public class FeedTest {
 	}
 	
 	//search for a public page and validate it has been correctly found
-	@Test(dataProviderClass=HomePage.class, dataProvider="correctLogin")
-	public void findPublicPage(String user, String password) throws InterruptedException{
-		fbNewsFeed.search("Jeff Bridges");
+	@Test(dependsOnMethods="correctLogin")
+	public void findPublicPage(){
+		fbNewsFeed.search("Jeff Bridges", wait);
 		fbPublicProfile.verifyPageTitle("Jeff Bridges");
 	}
 }

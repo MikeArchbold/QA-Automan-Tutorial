@@ -2,8 +2,10 @@ package com.facebook.qa.pages;
 
 import java.util.HashMap;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -30,6 +32,12 @@ public class BasePage {
 	public void loadPage(){
 		driver.get(url);
 		Assert.assertEquals(driver.getTitle(), title);
+	}
+	
+	public void waitUntilVisible(WebElement element){
+		WebElement waitElement = wait.until(
+		        ExpectedConditions.visibilityOf(element));
+		waitElement.isDisplayed();
 	}
 	
 	public void click(WebElement element){
