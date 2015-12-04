@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class NewsFeedPage extends BasePage{
 	
@@ -24,19 +23,46 @@ public class NewsFeedPage extends BasePage{
 	WebElement textbox_searchBox;
 	@FindBy(xpath=".//*[@id='js_a']/ul/li[1]")
 	WebElement listItem_firstSearch;
+	@FindBy(css="#fbDockChatBuddylistNub > a")
+	WebElement button_openChat;
+	@FindBy(css=".clearfix.fbNubFlyoutTitlebar > div:nth-of-type(1) > div:nth-of-type(1) > a")
+	WebElement button_createNewMessage;
+	@FindBy(css=".close.button")
+	WebElement button_closeMessage;
+	@FindBy(css=".titlebarTextWrapper")
+	WebElement button_closeChat;
+	
+	public NewsFeedPage(WebDriver driver){
+		super(driver);
+	}
 	
 	public void editNewsFeedText(String text){
 		setText(textbox_NewsFeed, text);
 	}
 	
 	public void search(String text, WebDriverWait wait){
-		textbox_searchBox.sendKeys(text);
+		setText(textbox_searchBox, text);
 		waitUntilVisible(listItem_firstSearch);
-		listItem_firstSearch.click();
+		click(listItem_firstSearch);
+	}
+	
+	public void openChat(){
+		click(button_openChat);
+	}
+	
+	public void openNewMessage(){
+		click(button_createNewMessage);
+	}
+	
+	public void closeMessage(){
+		click(button_closeMessage);
+	}
+	
+	public void closeChat(){
+		click(button_closeChat);
 	}
 	
 	public void clearNewsFeedText(){
-		System.out.print("not working");
 		clearText(textbox_NewsFeedWithEmote);
 	}
 	
@@ -52,9 +78,5 @@ public class NewsFeedPage extends BasePage{
 	public void removeEmotes(){
 		click(button_OpenEmotesWindow);
 		click(button_RemoveEmote);
-	}
-	
-	public NewsFeedPage(WebDriver driver){
-		super(driver);
 	}
 }

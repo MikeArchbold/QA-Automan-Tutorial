@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class BasePage {
+public abstract class BasePage {
 
 	String url;
 	String title;
@@ -38,6 +38,11 @@ public class BasePage {
 		WebElement waitElement = wait.until(
 		        ExpectedConditions.visibilityOf(element));
 		waitElement.isDisplayed();
+		try{
+			Thread.sleep(3000);
+		} catch(InterruptedException ex){
+			ex.printStackTrace();
+		}
 	}
 	
 	public void click(WebElement element){
@@ -48,13 +53,20 @@ public class BasePage {
 		element.click();
 		element.clear();
 		element.sendKeys(text);
-		Assert.assertEquals(element.getAttribute("value"), text);
+		
+		String textInElement;
+		if (element.getAttribute("value") == null){
+			textInElement = element.getText();
+		} else{
+			textInElement = element.getAttribute("value");
+		}
+		
+		Assert.assertEquals(textInElement.replaceAll("\\s+",""),
+				text.replaceAll("\\s+",""));
 	}
 	
 	public void clearText(WebElement element){
 		element.clear();
-		System.out.print("clearText\n");
-		System.out.println("this is stupid" + element.getAttribute("value"));
 		if (!(element.getAttribute("value") == null) && 
 				!element.getAttribute("value").equals(""))
 			Assert.fail(element.getTagName() + " text field not cleared!");
