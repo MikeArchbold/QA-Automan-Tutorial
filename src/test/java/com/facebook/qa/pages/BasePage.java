@@ -2,7 +2,6 @@ package com.facebook.qa.pages;
 
 import java.util.HashMap;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +22,10 @@ public abstract class BasePage {
 	public BasePage(WebDriver driver){
 		this.driver = driver;
 		wait = new WebDriverWait(driver, 5);
+	}
+	
+	public void verifyWebsiteTitle(String title){
+		Assert.assertEquals(driver.getTitle(), title);
 	}
 	
 	protected void assertText(WebElement element, String text){

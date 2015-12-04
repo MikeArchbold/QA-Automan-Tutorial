@@ -40,7 +40,7 @@ public class NewsFeedPage extends BasePage{
 		setText(textbox_NewsFeed, text);
 	}
 	
-	public void search(String text, WebDriverWait wait){
+	public void search(String text){
 		setText(textbox_searchBox, text);
 		waitUntilVisible(listItem_firstSearch);
 		click(listItem_firstSearch);

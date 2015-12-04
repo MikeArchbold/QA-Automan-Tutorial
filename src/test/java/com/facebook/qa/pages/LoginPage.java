@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
 
-	@FindBy(css=".pam.login_error_box.uiBoxRed>div:first-child") WebElement errorBox;
+	@FindBy(css=".uiContextualLayer.uiContextualLayerRight > div > div > div > a") WebElement errorBox;
 	
 	public LoginPage(WebDriver driver) {
 		super(driver);
