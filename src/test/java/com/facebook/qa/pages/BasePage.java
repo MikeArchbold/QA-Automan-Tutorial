@@ -68,6 +68,10 @@ public abstract class BasePage {
 				text.replaceAll("\\s+",""));
 	}
 	
+	protected String getURL(WebElement element){
+		return element.getAttribute("href");
+	}
+	
 	public void clearText(WebElement element){
 		element.clear();
 		if (!(element.getAttribute("value") == null) && 

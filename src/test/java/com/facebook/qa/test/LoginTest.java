@@ -3,7 +3,6 @@ package com.facebook.qa.test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -17,20 +16,22 @@ import com.facebook.qa.data.HomePage;
 import com.facebook.qa.pages.FacebookMainPage;
 import com.facebook.qa.pages.LoginPage;
 import com.facebook.qa.pages.WelcomePage;
+import com.facebook.qa.tools.DriverFactory;
 import com.facebook.qa.tools.ReadXMLFile;
 
 public class LoginTest {
 	
+	final String defaultType = "FIREFOX";
 	String[][] users;
 	FacebookMainPage fbMainPage;
 	LoginPage fbLoginPage;
 	WelcomePage fbWelcomePage;
 	WebDriver driver;
 	WebDriverWait wait;
-	
+
 	@BeforeClass(alwaysRun = true)
 	public void setup(){
-		driver = new FirefoxDriver();
+		driver = DriverFactory.getWebDriver(defaultType);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 5);
 		
@@ -72,12 +73,11 @@ public class LoginTest {
 		
 		//when all cookies deleted defaults to welcome page
 		if (errorType.equals("none")){
-			System.out.println(fbWelcomePage.getUsernameText());
 			Assert.assertEquals(fbWelcomePage.getUsernameText(), "John Tester");
 		}
 		else{
-			Assert.assertTrue(fbLoginPage.checkErrorHeader("Please re-enter"
-					+ " your password"), "Error expected: "+ errorType);
+			Assert.assertTrue(fbLoginPage.checkErrorHeader("Forgot Password?"),
+					"Error expected: "+ errorType);
 		}
 	}
 }

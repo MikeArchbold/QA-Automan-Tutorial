@@ -8,7 +8,7 @@ public class PublicProfilePage extends BasePage{
 
 	@FindBy(css="#fbProfileCover > div:nth-of-type(3) > div:nth-of-type(1) > h2 > span:nth-of-type(1)")
 	WebElement textbox_pageTitle;
-	@FindBy(xpath=".//*[@data-id='1']/div/div[2]/div/div")
+	@FindBy(xpath=".//*[@data-id='1']/div/div[1]/a")
 	WebElement link_aboutSection;
 	@FindBy(css=".uiList.fbSettingsList > li:nth-of-type(3) > div > div:nth-of-type(2) > div> a")
 	WebElement link_website;
@@ -25,8 +25,7 @@ public class PublicProfilePage extends BasePage{
 		click(link_aboutSection);
 	}
 	
-	public void clickPersonalLink(String title){
-		click(link_website);
-		verifyWebsiteTitle(title);
+	public String getLinkURL(){
+		return getURL(link_website);
 	}
 }

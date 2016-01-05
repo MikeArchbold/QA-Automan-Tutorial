@@ -58,7 +58,7 @@ public class FeedTest {
 	//search for a public page and validate it has been correctly found
 	@Test(dependsOnMethods="correctLogin")
 	public void findPublicPage(){
-		fbNewsFeed.search("Jeff Bridges", wait);
+		fbNewsFeed.search("Jeff Bridges");
 		fbPublicProfile.verifyPageTitle("Jeff Bridges");
 	}
 }

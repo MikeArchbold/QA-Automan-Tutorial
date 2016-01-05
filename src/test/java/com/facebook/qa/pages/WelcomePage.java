@@ -6,7 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class WelcomePage extends BasePage{
 	
-	@FindBy(css=".fbxWelcomeBoxName") WebElement link_profilePage;
+	@FindBy(xpath=".//*[@data-testid='left_nav_item_John Tester']/div/span")
+	WebElement link_profilePage;
 	
 	public WelcomePage(WebDriver driver) {
 		super(driver);

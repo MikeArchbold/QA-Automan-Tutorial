@@ -1,27 +1,30 @@
 package com.facebook.qa.test;
 
-import java.io.File;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import com.facebook.qa.pages.FacebookMainPage;
 
 public class Sandbox {
 
-	//javascript changing ids...use css???
 	public static void main(String[] args) throws InterruptedException{
-//		
-		String user = System.getProperty("user.name");
-		System.out.println(user);
-		System.out.println("/home/" + user + "/users.xml");
-		File fXmlFile = new File("/home/" + user + "/users.xml");
+		System.out.println(System.getProperty("java.version"));
+		String user = "qa.automan.tutorial@gmail.com";
+		String password = "auto1234";
 		
-//		WebDriver driver = new FirefoxDriver();
-//		//driver.manage().window().maximize();
-//		driver.manage().deleteAllCookies();
-//		driver.get("http://facebook.com");
-//		FacebookMainPage mp  = PageFactory.initElements(driver, FacebookMainPage.class);
-//		System.out.println("running");
-//		mp.setText_EmailSignUp("qa");
-//		mp.setText_FirstName("John");
-//		mp.setText_LastName("auto");
-//		mp.setText_PasswordSignUp("1234");
-//		mp.dropdown_Bday("9", "10", "1999");
+		WebDriver driver = new FirefoxDriver();
+		FacebookMainPage fbMainPage = new FacebookMainPage(driver);
+		fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
+		
+		fbMainPage.loadPage();
+		fbMainPage.login(user, password);
+		
+		//open chat window, create a new message
+		driver.findElement(By.cssSelector("#fbDockChatBuddylistNub > a")).click();
+		driver.findElement(By.cssSelector(".clearfix.fbNubFlyoutTitlebar > div:nth-of-type(1) > div:nth-of-type(1) > a")).click();
+		driver.findElement(By.cssSelector(".close.button")).click();
+		driver.findElement(By.cssSelector(".titlebarTextWrapper")).click();
 	}
 }
